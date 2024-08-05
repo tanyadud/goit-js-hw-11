@@ -1,8 +1,5 @@
 'use strict';
 
-
-const gallery = document.querySelector('.gallery');
-const loader = document.querySelector('.loader');
 const searchInput = document.querySelector('.search-input');
 const url = 'https://pixabay.com/api/';
 
@@ -16,16 +13,9 @@ const searchParams = {
 };
 
 function fetchPhotos() {
-    gallery.innerHTML = '';
-    loader.style.display = 'inline-block';
     searchParams.q = searchInput.value.trim();
     const searchParamsString = new URLSearchParams(searchParams).toString();
-    return fetch(`${url}?${searchParamsString}`).then(response => {
-      if (!response.ok) {
-        throw new Error(response.status);
-      }
-      return response.json();
-    });
+    return fetch(`${url}?${searchParamsString}`)
 }
 
-  export { fetchPhotos };
+export { fetchPhotos };

@@ -5,8 +5,6 @@ import SimpleLightbox from 'simplelightbox';
 import errorIcon from '/img/error.svg';
 
 const gallery = document.querySelector('.gallery');
-const loader = document.querySelector('.loader');
-
 const simpleGallery = new SimpleLightbox('.gallery a', {
     overlayOpacity: 0.8,
     captionsData: 'alt',
@@ -14,13 +12,6 @@ const simpleGallery = new SimpleLightbox('.gallery a', {
 });
 
 function displayPhotos(photos) {
-    if (photos.hits.length === 0) {
-        showErrorMsg(
-        'Sorry, there are no images matching your search query. Please try again!'
-      );
-      loader.style.display = 'none';
-      return;
-    }
     const markup = photos.hits
       .map(
         ({
@@ -49,7 +40,6 @@ function displayPhotos(photos) {
       )
       .join('');
     gallery.insertAdjacentHTML('afterbegin', markup);
-    loader.style.display = 'none';
     simpleGallery.refresh();
 }
 
@@ -68,4 +58,4 @@ function showErrorMsg(msg) {
 }
 
 
-export { displayPhotos };
+export { displayPhotos, showErrorMsg };
